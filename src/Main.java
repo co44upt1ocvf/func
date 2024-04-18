@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
 
     public static Double[] revenue = new Double[4];
     public static List<String[]> workers = new ArrayList<>();
+    int beerStock;
 
     public static void main(String[] args) {
 
@@ -24,6 +26,9 @@ public class Main {
         workers.add(new String[]{"Анна", "Сидорова", "Мастер по упаковке", "1500.0"});
 
         Whosthebestworker(workers);
+
+        int Production = DailyProduction();
+        System.out.println("\nПроизведено " + Production + " литров пива за день.");
     }
 
     public static void RevenueSum(){
@@ -46,4 +51,28 @@ public class Main {
             System.out.println("--------------------");
         }
     }
+
+    public static int DailyProduction() {
+        Random random = new Random();
+        return random.nextInt(901) + 100;
+    }
+
+    public void deliverBeer(int quantity) {
+        if (beerStock >= quantity) {
+            beerStock -= quantity;
+            System.out.println("Поставлено " + quantity + " литров пива");
+        } else {
+            System.out.println("Недостаточно пива на складе для поставки");
+        }
+    }
+
+    public void recordQualityTestResults(String beerType, boolean passedQualityTest) {
+        if (passedQualityTest) {
+            System.out.println(beerType + " прошло тестирование на качество.");
+        } else {
+            System.out.println(beerType + " не прошло тестирование на качество. Необходимо отклонить партию.");
+        }
+    }
+
+
 }

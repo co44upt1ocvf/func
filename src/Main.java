@@ -9,6 +9,7 @@ public class Main {
     public static List<String[]> workers = new ArrayList<>();
     public static List<String> rawMaterial = new ArrayList<>();
     int beerStock;
+    public static int days;
 
     public static void main(String[] args) {
 
@@ -22,7 +23,6 @@ public class Main {
         System.out.println("Вся выручка:");
         revenueSum();
 
-
         workers.add(new String[]{"Иван", "Петров", "Пивовар", "2000.0"});
         workers.add(new String[]{"Анна", "Сидорова", "Мастер по упаковке", "1500.0"});
 
@@ -30,6 +30,10 @@ public class Main {
 
         int Production = dailyProduction();
         System.out.println("\nПроизведено " + Production + " литров пива за день.");
+        System.out.println("\nПроизведено " + weeklyProduction() + " литров пива за неделю.");
+        System.out.println("\nВведите кол-во дней:");
+        days = new Scanner(System.in).nextInt();
+        System.out.println("\nВ среднем производится за день: " + Math.round(averageDailyProduction()));
 
         rawMaterial.add("Солод ржаной");
         rawMaterial.add("Хмель");
@@ -83,5 +87,21 @@ public class Main {
         Random random = new Random();
         int index = random.nextInt(rawMaterial.size());
         return rawMaterial.get(index);
+    }
+
+    public static int weeklyProduction() {
+        int totalProduction = 0;
+        for (int i = 0; i < 7; i++) {
+            totalProduction += dailyProduction();
+        }
+        return totalProduction;
+    }
+
+    public static double averageDailyProduction() {
+        int totalProduction = 0;
+        for (int i = 0; i < days; i++) {
+            totalProduction += dailyProduction();
+        }
+        return (double) totalProduction / days;
     }
 }

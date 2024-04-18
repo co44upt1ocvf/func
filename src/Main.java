@@ -19,19 +19,19 @@ public class Main {
         }
 
         System.out.println("Вся выручка:");
-        RevenueSum();
+        revenueSum();
 
 
         workers.add(new String[]{"Иван", "Петров", "Пивовар", "2000.0"});
         workers.add(new String[]{"Анна", "Сидорова", "Мастер по упаковке", "1500.0"});
 
-        Whosthebestworker(workers);
+        whosthebestworker(workers);
 
-        int Production = DailyProduction();
+        int Production = dailyProduction();
         System.out.println("\nПроизведено " + Production + " литров пива за день.");
     }
 
-    public static void RevenueSum(){
+    public static void revenueSum(){
         double revenueSum = 0;
 
         for (Double aDouble : revenue) {
@@ -40,7 +40,7 @@ public class Main {
         System.out.println(revenueSum);
     }
 
-    public static void Whosthebestworker(List<String[]> workers){
+    public static void whosthebestworker(List<String[]> workers){
         System.out.println("\nСтатистика по работникам:");
 
         for (String[] worker : workers) {
@@ -52,7 +52,7 @@ public class Main {
         }
     }
 
-    public static int DailyProduction() {
+    public static int dailyProduction() {
         Random random = new Random();
         return random.nextInt(901) + 100;
     }

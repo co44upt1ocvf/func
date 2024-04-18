@@ -7,6 +7,7 @@ public class Main {
 
     public static Double[] revenue = new Double[4];
     public static List<String[]> workers = new ArrayList<>();
+    public static List<String> rawMaterial = new ArrayList<>();
     int beerStock;
 
     public static void main(String[] args) {
@@ -25,10 +26,14 @@ public class Main {
         workers.add(new String[]{"Иван", "Петров", "Пивовар", "2000.0"});
         workers.add(new String[]{"Анна", "Сидорова", "Мастер по упаковке", "1500.0"});
 
-        whosthebestworker(workers);
+        trustworthiness(workers);
 
         int Production = dailyProduction();
         System.out.println("\nПроизведено " + Production + " литров пива за день.");
+
+        rawMaterial.add("Солод ржаной");
+        rawMaterial.add("Хмель");
+        rawMaterial.add("Солод карамельный");
     }
 
     public static void revenueSum(){
@@ -40,7 +45,7 @@ public class Main {
         System.out.println(revenueSum);
     }
 
-    public static void whosthebestworker(List<String[]> workers){
+    public static void trustworthiness(List<String[]> workers){
         System.out.println("\nСтатистика по работникам:");
 
         for (String[] worker : workers) {
@@ -74,5 +79,9 @@ public class Main {
         }
     }
 
-
+    public String allocateRandomMaterial() {
+        Random random = new Random();
+        int index = random.nextInt(rawMaterial.size());
+        return rawMaterial.get(index);
+    }
 }
